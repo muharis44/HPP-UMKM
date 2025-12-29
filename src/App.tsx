@@ -7,6 +7,7 @@ import Dashboard from './pages/Dashboard';
 import RawMaterials from './pages/RawMaterials';
 import Products from './pages/Products';
 import HppCalculator from './pages/HppCalculator';
+import MasterData from './pages/MasterData';
 import Suppliers from './pages/Suppliers';
 import Users from './pages/Users';
 import Settings from './pages/Settings';
@@ -98,14 +99,8 @@ function AppRoutes() {
         <Route path="/raw-materials" element={<RawMaterials />} />
         <Route path="/products" element={<Products />} />
         <Route path="/hpp-calculator" element={<HppCalculator />} />
-        <Route
-          path="/suppliers"
-          element={
-            <AdminRoute>
-              <Suppliers />
-            </AdminRoute>
-          }
-        />
+        <Route path="/master-data" element={<MasterData />} />
+        <Route path="/suppliers" element={<Suppliers />} />
         <Route
           path="/users"
           element={

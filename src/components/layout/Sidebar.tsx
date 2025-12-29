@@ -7,6 +7,7 @@ import {
   Truck,
   Calculator,
   Settings,
+  Database,
   X
 } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
@@ -21,7 +22,8 @@ const navItems = [
   { to: '/raw-materials', icon: Boxes, label: 'Bahan Baku' },
   { to: '/products', icon: Package, label: 'Produk' },
   { to: '/hpp-calculator', icon: Calculator, label: 'Kalkulator HPP' },
-  { to: '/suppliers', icon: Truck, label: 'Supplier', adminOnly: true },
+  { to: '/master-data', icon: Database, label: 'Master Data' },
+  { to: '/suppliers', icon: Truck, label: 'Supplier' },
   { to: '/users', icon: Users, label: 'Pengguna', adminOnly: true },
   { to: '/settings', icon: Settings, label: 'Pengaturan' },
 ];
