@@ -5,7 +5,7 @@ import Button from '../components/ui/Button';
 import Modal from '../components/ui/Modal';
 import Input from '../components/ui/Input';
 import DataTable from '../components/ui/DataTable';
-import { supabase } from '../lib/supabase';
+import { api } from '../lib/api';
 import type { Supplier } from '../types/database';
 
 export default function Suppliers() {
@@ -31,7 +31,7 @@ export default function Suppliers() {
   const fetchSuppliers = async () => {
     setLoading(true);
     try {
-      const { data } = await supabase.from('suppliers').select('*').order('name');
+      const { data } = await api.suppliers.getAll();
       setSuppliers(data || []);
     } catch (error) {
       console.error('Error fetching suppliers:', error);
@@ -82,9 +82,9 @@ export default function Suppliers() {
       };
 
       if (editingSupplier) {
-        await supabase.from('suppliers').update(data).eq('id', editingSupplier.id);
+        await api.suppliers.update(editingSupplier.id, data);
       } else {
-        await supabase.from('suppliers').insert(data);
+        await api.suppliers.create(data);
       }
 
       setIsFormOpen(false);
@@ -100,7 +100,7 @@ export default function Suppliers() {
     if (!confirm('Yakin ingin menghapus supplier ini?')) return;
 
     try {
-      await supabase.from('suppliers').delete().eq('id', id);
+      await api.suppliers.delete(Number(id));
       fetchSuppliers();
     } catch (error) {
       console.error('Error deleting:', error);
