@@ -118,6 +118,11 @@ export const api = {
         method: 'POST',
         body: JSON.stringify(data),
       }),
+    updateCategory: (id: number, data: any) =>
+      fetchApi(`/api/master-data/categories/${id}`, {
+        method: 'PUT',
+        body: JSON.stringify(data),
+      }),
     deleteCategory: (id: number) =>
       fetchApi(`/api/master-data/categories/${id}`, {
         method: 'DELETE',
@@ -126,6 +131,11 @@ export const api = {
     createUnit: (data: any) =>
       fetchApi('/api/master-data/units', {
         method: 'POST',
+        body: JSON.stringify(data),
+      }),
+    updateUnit: (id: number, data: any) =>
+      fetchApi(`/api/master-data/units/${id}`, {
+        method: 'PUT',
         body: JSON.stringify(data),
       }),
     deleteUnit: (id: number) =>

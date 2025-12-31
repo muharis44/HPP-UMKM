@@ -26,6 +26,21 @@ export const createCategory = async (req: AuthRequest, res: Response) => {
   }
 };
 
+export const updateCategory = async (req: AuthRequest, res: Response) => {
+  try {
+    const { id } = req.params;
+    const { name, description } = req.body;
+    await pool.query(
+      'UPDATE product_categories SET name = ?, description = ? WHERE id = ?',
+      [name, description, id]
+    );
+    res.json({ id: parseInt(id), name, description });
+  } catch (error) {
+    console.error('Update category error:', error);
+    res.status(500).json({ error: 'Failed to update category' });
+  }
+};
+
 export const deleteCategory = async (req: AuthRequest, res: Response) => {
   try {
     const { id } = req.params;
@@ -58,6 +73,21 @@ export const createUnit = async (req: AuthRequest, res: Response) => {
   } catch (error) {
     console.error('Create unit error:', error);
     res.status(500).json({ error: 'Failed to create unit' });
+  }
+};
+
+export const updateUnit = async (req: AuthRequest, res: Response) => {
+  try {
+    const { id } = req.params;
+    const { name, abbreviation, category } = req.body;
+    await pool.query(
+      'UPDATE units_of_measurement SET name = ?, abbreviation = ?, category = ? WHERE id = ?',
+      [name, abbreviation, category, id]
+    );
+    res.json({ id: parseInt(id), name, abbreviation, category });
+  } catch (error) {
+    console.error('Update unit error:', error);
+    res.status(500).json({ error: 'Failed to update unit' });
   }
 };
 
